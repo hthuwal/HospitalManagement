@@ -1,8 +1,8 @@
 <?php  
-	include("connection.php");
+	include("connection.html");
 	function get_all($table,$id,$value)
 	{
-		include("connection.php");
+		include("connection.html");
 		$qry="SELECT * FROM `".$table."` WHERE `".$id."`='".$value."' order by ".$id." desc";
 		//echo $qry;
 		$result=mysqli_query($link,$qry);
@@ -16,7 +16,7 @@
 	}
 	function updatevalue($table,$id,$valueid,$key,$value)
 	{
-		include("connection.php");
+		include("connection.html");
 		try{
 			$qry="UPDATE `".$table."` SET `".$key."`='".$value."' WHERE `".$id."`='".$valueid."'";
 			//echo $qry;

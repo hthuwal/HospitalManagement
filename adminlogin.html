@@ -1,6 +1,6 @@
 <?php  	
 	session_start();
-	include("function.php");
+	include("function.html");
 	$qry="SELECT * FROM `user` WHERE `userid`='".mysqli_real_escape_string($link,$_POST['userid_admin'])."' AND `password`='".md5(md5($_POST['userid_admin']).$_POST['password_admin'])."' AND `type`='admin'";
 	
 	$result = mysqli_query($link,$qry);

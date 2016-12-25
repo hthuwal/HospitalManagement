@@ -1,6 +1,6 @@
 <?php  
 	session_start();
-	include("connection.php");
+	include("connection.html");
 	$qry="SELECT * from `attends` where `pid`='".$_SESSION['editpid']."' AND `end_date` IS NULL";
 	$result=mysqli_query($link,$qry);
 	if(mysqli_num_rows($result))

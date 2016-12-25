@@ -1,6 +1,6 @@
   <?php 
 	session_start();
-	include("function.php");
+	include("function.html");
   
   if(isset($_SESSION['type']) and $_SESSION['type']=="admin" and isset($_SESSION['aid']) and isset($_SESSION['userid']))
   {
@@ -56,7 +56,7 @@
   else
   {
     echo "Please Login First";
-    echo '<meta http-equiv="refresh" content="1;url=index.php">';
+    echo '<meta http-equiv="refresh" content="1;url=index.html">';
     sleep(1);
     die();
   }
@@ -92,12 +92,12 @@
       $qry="UPDATE `patient` SET `sex`='".$_POST['sex']."'WHERE `pid`='".$_SESSION['editpid']."'";
       $result = mysqli_query($link,$qry);
     }
-   header('Location:admin_patient.php');
+   header('Location:admin_patient.html');
   }
   if(isset($_POST['submit'])and $_POST['submit']="Log Out")
 	{
 		session_destroy();
-    header('Location:index.php');
+    header('Location:index.html');
 	}
 	if(isset($_POST['action']) and $_POST['action']=="add")
   {
@@ -199,12 +199,12 @@ input[type=number]::-webkit-outer-spin-button {
 </head>
 <body>
 
-<?php include('header.php') ?>
+<?php include('header.html') ?>
 
 <div class="container" id="topContainer">
 <div class="row">
   <div class="col s12 m10 offset-m1">
-  <a href="admin.php" class="fixed pull-left btn-floating btn-large waves-effect waves-light red"><i class="material-icons">replay</i></a>
+  <a href="admin.html" class="fixed pull-left btn-floating btn-large waves-effect waves-light red"><i class="material-icons">replay</i></a>
   </div>
 </div>
 <div class="row">
@@ -695,7 +695,7 @@ input[type=number]::-webkit-outer-spin-button {
         $("#doc").prop("disabled",false); 
         $("#doc").html("<option value='' disabled selected>Select</option>");
         $.ajax({
-          url:"appointdoc.php",
+          url:"appointdoc.html",
           type:"POST",
           data:{type:type},
           dataType:"json",
@@ -724,7 +724,7 @@ input[type=number]::-webkit-outer-spin-button {
       $("#adddform").hide();
     })
     $.ajax({
-      url:"checkattends.php",
+      url:"checkattends.html",
       success:function(data){
         if(data==0)
         {
@@ -748,7 +748,7 @@ input[type=number]::-webkit-outer-spin-button {
         $("#docselect").prop("disabled",false); 
         $("#docselect").html("<option value='' disabled selected>Select</option>");
         $.ajax({
-          url:"assigndoc.php",
+          url:"assigndoc.html",
           type:"POST",
           data:{doctype:doctype},
           dataType:"json",

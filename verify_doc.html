@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	include("connection.php");
+	include("connection.html");
 	if(isset($_POST['submit'])&&$_POST['submit']=="LogIn")
 	{
 		
@@ -27,7 +27,7 @@
 				$result=mysqli_query($link,$qry);
 				$row=mysqli_fetch_array($result);
 				$_SESSION['did']=$row['did'];
-				echo '<meta http-equiv="refresh" content="1;url=doctor.php">';
+				echo '<meta http-equiv="refresh" content="1;url=doctor.html">';
 			}
 			else
 			{

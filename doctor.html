@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	include("function.php");
+	include("function.html");
   
   if(isset($_SESSION['type']) and $_SESSION['type']=="doctor" and isset($_SESSION['did']) and isset($_SESSION['userid']))
   {
@@ -41,7 +41,7 @@
   else
   {
     echo "Please Login First";
-    echo '<meta http-equiv="refresh" content="1;url=doctor_login.php">';
+    echo '<meta http-equiv="refresh" content="1;url=doctor_login.html">';
     sleep(1);
     die();
   }
@@ -95,12 +95,12 @@
       $qry="UPDATE `doctor` SET `sex`='".$_POST['sex']."'";
       $result = mysqli_query($link,$qry);
     }
-    header('Location:doctor.php');
+    header('Location:doctor.html');
   }
   if(isset($_POST['submit'])and $_POST['submit']="Log Out")
 	{
 		session_destroy();
-    header('Location:index.php');
+    header('Location:index.html');
 	}
 	
 ?> 
@@ -176,7 +176,7 @@ input[type=number]::-webkit-outer-spin-button {
 </head>
 <body>
 
-<?php include('header.php') ?>
+<?php include('header.html') ?>
 
 <div class="container" id="topContainer">
 <div class="row">

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include("function.php");
+include("function.html");
 
 if(isset($_SESSION['type']) and $_SESSION['type']=="admin" and isset($_SESSION['aid']) and isset($_SESSION['userid']))
 {
@@ -37,7 +37,7 @@ if(isset($_SESSION['type']) and $_SESSION['type']=="admin" and isset($_SESSION['
 else
 {
 	echo "Please Login First";
-	echo '<meta http-equiv="refresh" content="1;url=index.php">';
+	echo '<meta http-equiv="refresh" content="1;url=index.html">';
 	sleep(1);
 	die();
 }
@@ -56,12 +56,12 @@ if(isset($_POST['action'])and $_POST['action']=="save")
 		$qry="UPDATE `admins` SET `sex`='".$_POST['adminsex']."'";
 		$result = mysqli_query($link,$qry);
 	}
-	header('Location:admin.php');
+	header('Location:admin.html');
 }
 if(isset($_POST['submit'])and $_POST['submit']="Log Out")
 {
 	session_destroy();
-	header('Location:index.php');
+	header('Location:index.html');
 }
 ?>
 <!DOCTYPE html>
@@ -142,7 +142,7 @@ if(isset($_POST['submit'])and $_POST['submit']="Log Out")
 </head>
 <body>
 
-	<?php include('header.php') ?>
+	<?php include('header.html') ?>
 
 	<div class="container" id="topContainer">
 		<div class="row">
@@ -315,7 +315,7 @@ if(isset($_POST['submit'])and $_POST['submit']="Log Out")
 										else 
 											echo "<td>".$row[$key]."</td>";
 									}
-									echo "<td ><a href='admin_doctor.php?did=$did' id='more' class='btn waves-effect waves-light'><i class='material-icons right'>send</i></a></td>";
+									echo "<td ><a href='admin_doctor.html?did=$did' id='more' class='btn waves-effect waves-light'><i class='material-icons right'>send</i></a></td>";
 									echo"</tr>";
 									while($row=mysqli_fetch_array($result,MYSQL_ASSOC))
 									{
@@ -354,7 +354,7 @@ if(isset($_POST['submit'])and $_POST['submit']="Log Out")
 											else
 												echo "<td>".$row[$key]."</td>";
 										}
-										echo "<td ><a href='admin_doctor.php?did=$did' id='more' class='btn waves-effect waves-light'><i class='material-icons right'>send</i></a></td>";
+										echo "<td ><a href='admin_doctor.html?did=$did' id='more' class='btn waves-effect waves-light'><i class='material-icons right'>send</i></a></td>";
 										echo"</tr>";
 									}
 									?>
@@ -430,7 +430,7 @@ if(isset($_POST['submit'])and $_POST['submit']="Log Out")
 										else 
 											echo "<td>".ucwords($row[$key])."</td>";
 									}
-									echo "<td ><a href='admin_patient.php?pid=$pid' id='more' class='btn waves-effect waves-light'><i class='material-icons right'>send</i></a></td>";
+									echo "<td ><a href='admin_patient.html?pid=$pid' id='more' class='btn waves-effect waves-light'><i class='material-icons right'>send</i></a></td>";
 									echo"</tr>";
 									while($row=mysqli_fetch_array($result,MYSQL_ASSOC))
 									{
@@ -483,7 +483,7 @@ if(isset($_POST['submit'])and $_POST['submit']="Log Out")
 										else 
 											echo "<td>".ucwords($row[$key])."</td>";
 									}
-									echo "<td ><a href='admin_patient.php?pid=$pid' id='more' class='btn waves-effect waves-light'><i class='material-icons right'>send</i></a></td>";
+									echo "<td ><a href='admin_patient.html?pid=$pid' id='more' class='btn waves-effect waves-light'><i class='material-icons right'>send</i></a></td>";
 									echo"</tr>";
 									}
 									?>
@@ -502,8 +502,8 @@ if(isset($_POST['submit'])and $_POST['submit']="Log Out")
 				<i class="large material-icons">add</i>
 			</a>
 			<ul>
-				<li><a class="btn-floating red" href="add_doctor.php"><img class="responsive-img" src="images.png"></a></li>
-				<li><a class="btn-floating yellow darken-1" href="add_patient.php"><img class="responsive-img" src="patient.png"></a></li>
+				<li><a class="btn-floating red" href="add_doctor.html"><img class="responsive-img" src="images.png"></a></li>
+				<li><a class="btn-floating yellow darken-1" href="add_patient.html"><img class="responsive-img" src="patient.png"></a></li>
 			</ul>
 		</div>
         

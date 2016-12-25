@@ -1,5 +1,5 @@
 <?php  
-	include("connection.php");
+	include("connection.html");
 	$qry="SELECT  `pid`,`name`  from `patient` WHERE `pid` NOT IN (SELECT `pid` FROM `attends` WHERE `end_date` IS NULL)";
 	$result=mysqli_query($link,$qry);
 	$ans =array();

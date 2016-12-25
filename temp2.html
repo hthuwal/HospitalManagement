@@ -1,5 +1,5 @@
 <?php  
-	include("function.php");
+	include("function.html");
 	if(isset($_POST['submit']))
 	{
 		$qry = "INSERT INTO `user` VALUES('".mysqli_real_escape_string($link,$_POST['userid'])."','".md5(md5($_POST['userid']).$_POST['password'])."','admin')";

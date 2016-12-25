@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	include("connection.php");
+	include("connection.html");
 	if(isset($_POST['submit'])&&$_POST['submit']=="LogIn")
 	{
 			
@@ -28,7 +28,7 @@
 				$_SESSION['pid']=$row['pid'];
 				$success="<div class='alert alert-success'>You Have Successfully Logged In!</div>";
 				
-				echo '<meta http-equiv="refresh" content="1;url=patient.php">';
+				echo '<meta http-equiv="refresh" content="1;url=patient.html">';
 			}
 			else
 			{
@@ -54,6 +54,6 @@
 		$_SESSION['userid']=$_POST['userid_signup'];
 		$_SESSION['type']='patient';
 		
-		header("Location:patient.php");
+		header("Location:patient.html");
 	}
 ?>

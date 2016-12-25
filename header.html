@@ -32,7 +32,7 @@
         <span class="icon-bar"></span>
       </button>
 
-      <a class="navbar-brand flow-text" href="index.php">Hospital Management</a>
+      <a class="navbar-brand flow-text" href="index.html">Hospital Management</a>
     </div>
 
     <div class="collapse navbar-collapse">
@@ -40,7 +40,7 @@
         <button id="logout" type="submit" name="submit" value="Log Out" class="btn btn-success waves-effect waves-light cyan">Log Out</button>
       </form>
       <ul class="navbar-right nav navbar-nav">
-        <li class="home active"><a href="index.php">Home</a></li>
+        <li class="home active"><a href="index.html">Home</a></li>
         <li><a  href="#about">About</a></li>
         <li><a  id="myadminlogin" class="modal-trigger" href="#adminloginform">Admin</a></li>
       </ul>        
@@ -126,7 +126,7 @@
       {
          $.ajax({
             type:"POST",
-            url:"adminlogin.php",
+            url:"adminlogin.html",
             data:{userid_admin:$("#userid_admin").val(),password_admin:$("#password_admin").val()},
             success:function(data){
               
@@ -134,7 +134,7 @@
               {
                 $("#error2").css("display","none");
                 $("#success").css("display","block");
-                window.location = "admin.php";
+                window.location = "admin.html";
               }
               else if(data==0)
               {

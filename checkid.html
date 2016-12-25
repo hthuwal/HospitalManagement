@@ -1,5 +1,5 @@
 <?php  
-	include("connection.php");
+	include("connection.html");
 	$qry="SELECT  *  from `user` WHERE `userid`='".$_POST['userid']."'";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_num_rows($result);

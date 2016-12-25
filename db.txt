@@ -1,0 +1,150 @@
+create table doctor
+(
+	did int primary key auto_increment,
+	name varchar(200),
+	sex enum("male","female","transgender"),
+	dob date,
+	address text,
+	mobile int,
+	salary int,
+	specialization enum("dentist","cardiologist")	
+);
+
+create table patient
+(
+	pid int primary key auto_increment,
+	name varchar(200),
+	sex enum("male","female","transgender"),
+	dob date,
+	address text,
+	admitted datetime,
+	discharged datetime,
+	age int,
+	mobile int,
+	disease text
+);
+
+create table nurse
+(
+	nid int primary key auto_increment,
+	name varchar(200),
+	sex enum("male","female","transgender"),
+	dob date,
+	address text
+);
+
+create table test
+(
+	tid int primary key auto_increment,
+	cost float,
+	name varchar(500),
+	description text
+);
+
+create table medicine
+(
+	mid int primary key auto_increment,
+	name varchar(200),
+	cost float,
+	details text,
+	current_stock int
+);
+
+create table room
+(
+	rid int primary key auto_increment,
+	rtype varchar(500),
+	cost_per_day float
+);
+
+create table takestest(
+	ttid int primary key auto_increment,
+	tid int,
+	pid int,
+	date_time datetime,
+	payment tinyint default 0,
+	foreign key (tid) references test (tid) on update cascade on delete cascade,
+	foreign key (pid) references patient (pid) on update cascade on delete cascade
+);
+
+create table buys(
+	bid int primary key auto_increment,
+	pid int,
+	mid int,
+	qty int,
+	date_time datetime,
+	payment tinyint default 0, 
+	foreign key (mid) references medicine (mid) on update cascade on delete cascade,
+	foreign key (pid) references patient (pid) on update cascade on delete cascade
+);
+
+create table assigned(
+	asid int primary key auto_increment,
+	pid int,
+	rid int,
+	date_assigned date,
+	date_released date default null,
+	foreign key (pid) references patient (pid) on update cascade on delete cascade,
+	foreign key (rid) references room (rid) on update cascade on delete cascade
+); 
+
+create table attends(
+	atid int primary key auto_increment,
+	pid int,
+	did int,
+	start_date datetime,
+	end_date datetime,
+	foreign key (pid) references patient (pid) on update cascade on delete cascade,
+	foreign key (did) references doctor (did) on update cascade on delete cascade 
+);
+
+create table governs(
+	nid int,
+	rid int,
+	start_date datetime,
+	end_date datetime,
+	foreign key (nid) references nurse (nid) on update cascade on delete cascade,
+	foreign key (rid) references room (rid) on update cascade on delete cascade 
+);
+
+create table appointment(
+	apid int primary key auto_increment,
+	did int,
+	pid int,
+	date_time datetime,
+	foreign key (did) references doctor (did) on update cascade on delete cascade,
+	foreign key (pid) references patient (pid) on update cascade on delete cascade,
+	status enum("pending","confirmed","denied")
+);
+
+create table bill(
+	billid int primary key auto_increment,
+	pid int,
+	amount float,
+	datop datetime not null,
+	path varchar(1000) not null
+);
+
+create table user(
+	userid varchar(500) primary key not null,
+	password varchar(500) not null,
+	type enum("doctor","patient","admin") not null
+);
+
+alter table doctor add (userid varchar(500), foreign key (userid) references user (userid) on update cascade on delete cascade);
+
+alter table patient add (userid varchar(500), foreign key (userid) references user (userid));
+
+alter table bill add (foreign key (pid) references patient (pid));		
+
+create table admins
+(
+	aid int primary key auto_increment,
+	name varchar(200),
+	sex enum("male","female","transgender"),
+	dob date,
+	doj date,
+	address text,
+	mobile int,
+	salary int
+);

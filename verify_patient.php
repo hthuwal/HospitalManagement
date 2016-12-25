@@ -1,0 +1,59 @@
+<?php 
+	session_start();
+	include("connection.php");
+	if(isset($_POST['submit'])&&$_POST['submit']=="LogIn")
+	{
+			
+		if($_POST['userid_login']=="")
+		{
+			$nouser="<div class='alert alert-warning'>Please Enter UserId</div>";
+		
+		}
+		if($_POST['password_login']=="")
+		{
+			$nopassword="<div class='alert alert-warning'>Please Enter a password</div>";
+		}
+		if($_POST['userid_login']!="" && $_POST['password_login']!="")
+		{
+			$qry="SELECT * FROM `user` WHERE `userid`='".mysqli_real_escape_string($link,$_POST['userid_login'])."' AND `password`='".md5(md5($_POST['userid_login']).$_POST['password_login'])."' AND `type`='patient'";
+			$result=mysqli_query($link,$qry);
+			$row=mysqli_num_rows($result);
+			if($row==1)
+			{
+				$_SESSION['userid']=$_POST['userid_login'];
+				$_SESSION['type']='patient';
+				$qry="SELECT `pid` from `patient` where `userid`='".$_POST['userid_login']."'";
+				$result=mysqli_query($link,$qry);
+				$row=mysqli_fetch_array($result);
+				$_SESSION['pid']=$row['pid'];
+				$success="<div class='alert alert-success'>You Have Successfully Logged In!</div>";
+				
+				echo '<meta http-equiv="refresh" content="1;url=patient.php">';
+			}
+			else
+			{
+				$wrong="<div class='alert alert-danger'>Please enter correct username and password!</div>";
+			}
+		}
+	}
+	if(isset($_POST['submit'])&&$_POST['submit']=="SignUp")
+	{
+		
+		$dob = new DateTime(mysqli_real_escape_string($link,$_POST['dob']));
+		$dob = date_format($dob,'Y-m-d');
+		
+		$qry="INSERT INTO `user` VALUES('".mysqli_real_escape_string($link,$_POST['userid_signup'])."','".md5(md5($_POST['userid_signup']).$_POST['password_signup'])."','patient')";
+		$result=mysqli_query($link,$qry);
+		$qry="INSERT INTO `patient`(`userid`,`name`,`dob`,`sex`) VALUES('".mysqli_real_escape_string($link,$_POST['userid_signup'])."','".mysqli_real_escape_string($link,$_POST['name_signup'])."','".$dob."','".$_POST['sex']."')";
+		
+		$result=mysqli_query($link,$qry);
+		$qry="SELECT `pid` from `patient` where `userid`='".$_POST['userid_signup']."'";
+		$result=mysqli_query($link,$qry);
+		$row=mysqli_fetch_array($result);
+		$_SESSION['pid']=$row['pid'];
+		$_SESSION['userid']=$_POST['userid_signup'];
+		$_SESSION['type']='patient';
+		
+		header("Location:patient.php");
+	}
+?>

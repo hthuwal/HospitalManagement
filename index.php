@@ -1,0 +1,113 @@
+<?php
+  session_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Home</title>
+
+  <!-- Bootstrap -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Materialize -->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style type="text/css">
+  body{
+    padding-top: 50px;
+    min-width: 100%;
+    max-width: 100%;
+    background-color: #F8F8F8;
+  }
+  .card{
+    margin:0 auto;
+    width:50%;  
+    padding:5px;
+
+  }
+  .container{
+    min-width: 100%;
+  }
+  .navbar-brand{
+    font-size:1.8em;
+  }
+  #topContainer{
+  
+    height:400px;
+    width:100%;
+    background-size: cover;
+  }
+  #topRow h1{
+    padding-top: 100px;
+    font-size: 400%;
+  }
+  #logoutform{
+    display:none;
+  }
+  #logoutform:input{
+    disabled:true;
+  }
+</style>
+</head>
+<body>
+
+<?php include("header.php") ?>
+
+<div class="container parallax-container" id="topContainer">
+  <div class="parallax"><img src="images/back2  .jpg"></div>
+  <div id="topRow" class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1 class="text-center flow-text lead">Hospital Management</h1>
+      <p class="text-center flow-text lead">Perfect Hospital Solutions!!</p>
+      <br/>
+      <p class="text-center flow-text lead">Details about the system!</p>  
+    </div>
+  </div>
+  <div id="topRow" class="row">
+    <div class="col m6 offset-m3">
+      <div class="col s10 m3 offset-m2">
+        <div class="card-panel hoverable">
+          <div clas="section">
+            <img class="responsive-img circle" width="200px"src="doctor.jpg"/>
+          </div>
+          <div class="section center-align">
+            <a target="_self"href="doctor_login.php" class="text-center lead">Doctor Portal</a>
+          </div>
+        </div>
+      </div> 
+      <div class="col m3 s10 offset-m2">
+        <div class="card-panel hoverable">
+          <div clas="section">
+            <img class="responsive-img circle" width="200px" src="doctor.jpg"/>
+          </div>
+          <div class="section center-align">
+            <a target="_self" href="patient_login.php" class="text-center lead">Patient Portal</a>
+          </div>
+        </div>
+      </div>    
+    </div>
+  </div>
+  <?php include("footer.php") ?>
+  
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+<script >
+  $("#topContainer").css("height",$(window).height()); $('.parallax').parallax();
+</script>
+</body>
+</html>
